@@ -869,6 +869,213 @@ export const items: Item[] = [
     ],
   },
   {
+    id: "salmon",
+    nombre: "Salmón",
+    tipo: "alimento",
+    categoria: "Proteína animal",
+    evidencia: 9,
+    coste: "medio",
+    seguridad: "alta",
+    retorno: "alto",
+    veredicto: "Merece la pena",
+    descripcion:
+      "Proteína completa + omega 3 EPA/DHA + vitamina D en un solo alimento. Uno de los más densos nutricionalmente. 2-3 raciones por semana sustituyen muchos suplementos.",
+    beneficios: [
+      "EPA y DHA (omega 3): efecto cardiovascular, antiinflamatorio y cognitivo documentado",
+      "Proteína completa de alta calidad (20-25g por 100g)",
+      "Vitamina D natural y B12 en concentraciones relevantes",
+      "Astaxantina: antioxidante carotenoide con efectos prometedores",
+    ],
+    limitaciones: [
+      "Precio elevado frente a sardinas o caballa con perfil similar",
+      "El salmón de piscifactoría tiene menor concentración de omega 3 que el salvaje",
+      "Mercurio: bajo en salmón, pero el salvaje puede tener más contaminantes que el de cultivo",
+    ],
+    alternativas: [
+      "Sardinas o caballa (omega 3 equivalente, mucho más baratas)",
+      "Trucha (perfil similar, menor coste)",
+    ],
+    referencias: [
+      {
+        titulo: "Fatty fish consumption and cardiovascular disease risk: meta-analysis",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6835948/",
+      },
+    ],
+  },
+  {
+    id: "aguacate",
+    nombre: "Aguacate",
+    tipo: "alimento",
+    categoria: "Grasas saludables",
+    evidencia: 7,
+    coste: "medio",
+    seguridad: "alta",
+    retorno: "alto",
+    veredicto: "Merece la pena",
+    descripcion:
+      "La fruta más alta en grasas monoinsaturadas. Mejora la absorción de nutrientes liposolubles y tiene un perfil de micronutrientes excepcional para ser una fruta.",
+    beneficios: [
+      "Ácido oleico: mejora perfil lipídico y sensibilidad a la insulina",
+      "Mejora la absorción de vitaminas liposolubles (A, D, E, K) de otros alimentos",
+      "Potasio: más que el plátano, importante para la presión arterial",
+      "Fibra soluble e insoluble, folato y magnesio",
+    ],
+    limitaciones: [
+      "Alta densidad calórica (160 kcal/100g): vigilar porciones en déficit calórico",
+      "Precio y disponibilidad variable; maduración impredecible",
+      "Impacto ambiental elevado (huella hídrica alta)",
+    ],
+    alternativas: [
+      "Aceite de oliva virgen extra (mismas grasas monoinsaturadas, más barato)",
+      "Nueces o almendras para los micronutrientes",
+    ],
+    referencias: [
+      {
+        titulo: "Avocado consumption and cardiometabolic risk: a systematic review",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6471050/",
+      },
+    ],
+  },
+  {
+    id: "espinacas",
+    nombre: "Espinacas",
+    tipo: "alimento",
+    categoria: "Fruta y verdura",
+    evidencia: 8,
+    coste: "bajo",
+    seguridad: "alta",
+    retorno: "alto",
+    veredicto: "Merece la pena",
+    descripcion:
+      "Máxima densidad de micronutrientes por caloría. Hierro, magnesio, folato, vitamina K y nitratos que mejoran el rendimiento físico. La base de cualquier dieta seria.",
+    beneficios: [
+      "Nitratos inorgánicos: mejoran la eficiencia muscular y reducen la presión arterial",
+      "Hierro no-hemo, magnesio y folato en altas concentraciones",
+      "Vitamina K, luteína y zeaxantina para salud ocular y ósea",
+      "Ecdisterona: compuesto con posible efecto anabólico (investigación emergente)",
+    ],
+    limitaciones: [
+      "Oxalatos: pueden reducir la absorción de calcio e hierro; blanquear mejora la biodisponibilidad",
+      "El hierro no-hemo tiene peor absorción que el animal (tomar con vitamina C)",
+      "Precaución en personas con cálculos renales de oxalato",
+    ],
+    alternativas: [
+      "Col rizada (kale): perfil similar pero más vitamina C y K",
+      "Acelgas, rúcula o canónigos para variedad",
+    ],
+    referencias: [
+      {
+        titulo: "Dietary nitrate from vegetables and exercise performance",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4998136/",
+      },
+    ],
+  },
+  {
+    id: "ajo",
+    nombre: "Ajo",
+    tipo: "alimento",
+    categoria: "Fruta y verdura",
+    evidencia: 6,
+    coste: "bajo",
+    seguridad: "alta",
+    retorno: "medio",
+    veredicto: "Merece la pena",
+    descripcion:
+      "Alicina y compuestos organosulfurados con efectos cardiovasculares y antimicrobianos documentados. Uno de los condimentos con mayor investigación científica.",
+    beneficios: [
+      "Reducción modesta pero real de la presión arterial sistólica (meta-análisis: -8 mmHg)",
+      "Efecto hipolipemiante: reduce LDL ligeramente",
+      "Propiedades antimicrobianas y efecto prebiótico",
+      "Asociado a menor incidencia de cáncer colorrectal en estudios epidemiológicos",
+    ],
+    limitaciones: [
+      "La alicina se destruye con la cocción prolongada (picar y dejar reposar 10 min antes de cocinar)",
+      "El ajo en polvo o suplementos tienen menor biodisponibilidad que el fresco",
+      "El efecto sobre la presión arterial es modesto: no sustituye la medicación",
+      "Puede causar molestias gastrointestinales en personas sensibles",
+    ],
+    alternativas: [
+      "Cebolla, puerros, cebollino (misma familia, compuestos similares)",
+      "Suplemento de ajo envejecido (Kyolic) si no se tolera el fresco",
+    ],
+    referencias: [
+      {
+        titulo: "Garlic intake and blood pressure: a meta-analysis",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6966103/",
+      },
+    ],
+  },
+  {
+    id: "chocolate-negro",
+    nombre: "Chocolate negro (+85%)",
+    tipo: "alimento",
+    categoria: "Grasas saludables",
+    evidencia: 6,
+    coste: "bajo",
+    seguridad: "alta",
+    retorno: "medio",
+    veredicto: "Merece la pena",
+    descripcion:
+      "Polifenoles, flavanoles y magnesio con efecto cardiovascular real. Pero solo a partir del 85% de cacao y sin abusar. El chocolate con leche no cuenta.",
+    beneficios: [
+      "Flavanoles del cacao: mejoran la función endotelial y reducen la presión arterial",
+      "Magnesio, hierro y zinc en cantidades relevantes",
+      "Efecto en el estado de ánimo vía serotonina y endorfinas",
+      "Antioxidantes polifenólicos con efecto antiinflamatorio modesto",
+    ],
+    limitaciones: [
+      "Alta densidad calórica: 600 kcal/100g, fácil de comer en exceso",
+      "El efecto requiere alto porcentaje de cacao (≥85%); el chocolate con leche no tiene evidencia",
+      "Algunos productos tienen altos niveles de cadmio y plomo (dependiente del origen del cacao)",
+      "La cafeína y teobromina pueden interferir con el sueño en personas sensibles",
+    ],
+    alternativas: [
+      "Cacao puro en polvo sin azúcar (más polifenoles, menos calorías)",
+      "Frutos rojos para un perfil antiinflamatorio similar",
+    ],
+    referencias: [
+      {
+        titulo: "Cocoa flavanols and cardiovascular health: a meta-analysis",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5539137/",
+      },
+    ],
+  },
+  {
+    id: "aceite-coco",
+    nombre: "Aceite de coco",
+    tipo: "alimento",
+    categoria: "Grasas saludables",
+    evidencia: 3,
+    coste: "medio",
+    seguridad: "media",
+    retorno: "bajo",
+    veredicto: "Probablemente humo",
+    descripcion:
+      "El aceite que prometía revolucionar la salud y ha decepcionado en cada ensayo clínico. La AHA advierte explícitamente contra su uso como grasa principal.",
+    beneficios: [
+      "Alta estabilidad térmica (útil para cocinar a alta temperatura)",
+      "MCTs (triglicéridos de cadena media): efecto ligeramente saciante en algunos estudios",
+    ],
+    limitaciones: [
+      "90% de grasas saturadas: eleva el LDL más que la mantequilla",
+      "La AHA recomienda explícitamente limitar su consumo cardiovascular",
+      "Los MCTs son minoritarios en el aceite de coco comercial (domina el ácido láurico)",
+      "Si quieres MCTs, mejor aceite de MCT puro que aceite de coco",
+      "El hype de 'quema grasas' no tiene respaldo en estudios de largo plazo",
+    ],
+    alternativas: [
+      "Aceite de oliva virgen extra (evidencia cardiovascular sólida)",
+      "Aceite de aguacate para cocción a alta temperatura",
+      "Aceite de MCT puro si el objetivo son los MCTs específicamente",
+    ],
+    referencias: [
+      {
+        titulo: "AHA Presidential Advisory: Dietary Fats and Cardiovascular Disease",
+        url: "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000510",
+      },
+    ],
+  },
+  {
     id: "nueces",
     nombre: "Nueces",
     tipo: "alimento",
@@ -902,7 +1109,290 @@ export const items: Item[] = [
     ],
   },
 
-  // ─── BEBIDAS ─────────────────────────────────────────────────────────────────
+  {
+    id: "zinc",
+    nombre: "Zinc",
+    tipo: "suplemento",
+    categoria: "Vitaminas y minerales",
+    evidencia: 7,
+    coste: "bajo",
+    seguridad: "media",
+    retorno: "alto",
+    veredicto: "Merece la pena",
+    descripcion:
+      "Mineral clave para la función inmune, síntesis proteica y producción de testosterona. El déficit es común en atletas y en personas con alta sudoración.",
+    beneficios: [
+      "Función inmune: acorta duración del resfriado común cuando se toma al inicio",
+      "Implicado en la síntesis de testosterona (efectos en déficit)",
+      "Síntesis proteica y cicatrización",
+      "Función tiroidea y salud de la piel",
+    ],
+    limitaciones: [
+      "Dosis altas (>40mg/día) interfieren con la absorción de cobre",
+      "El óxido de zinc tiene baja absorción; preferir gluconato, citrato o bisglicinato",
+      "Nauseas si se toma con el estómago vacío",
+      "Atletas con dieta variada rara vez tienen déficit real",
+    ],
+    alternativas: [
+      "Ostras (fuente más concentrada de zinc en alimentos)",
+      "Carne roja, semillas de calabaza, legumbres",
+    ],
+    referencias: [
+      {
+        titulo: "Zinc supplementation and immune function: a meta-analysis",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2277319/",
+      },
+    ],
+    contextoUso:
+      "8-15mg/día de zinc elemental. Tomar con comida para evitar náuseas. No combinar con suplementos de hierro en la misma toma.",
+    evidenciaDetalle:
+      "La evidencia para la función inmune es sólida. Para testosterona, el efecto existe pero principalmente en hombres con déficit previo (atletas de resistencia, vegetarianos). En personas con niveles normales, el efecto es mínimo.",
+    paraQuien: [
+      "Atletas con mucho volumen de entrenamiento y sudoración",
+      "Vegetarianos y veganos (menor absorción de zinc vegetal)",
+      "Hombres mayores de 50 con déficit confirmado",
+    ],
+    paraQuienNo: [
+      "Personas con dieta variada y sin signos de déficit",
+      "A dosis altas sin supervisión médica",
+    ],
+  },
+  {
+    id: "vitamina-k2",
+    nombre: "Vitamina K2",
+    tipo: "suplemento",
+    categoria: "Vitaminas y minerales",
+    evidencia: 5,
+    coste: "medio",
+    seguridad: "alta",
+    retorno: "medio",
+    veredicto: "Depende",
+    descripcion:
+      "Potencialmente importante para dirigir el calcio a los huesos y alejarlo de las arterias. La evidencia es prometedora pero los estudios en humanos son aún limitados.",
+    beneficios: [
+      "Activa proteínas (osteocalcina, MGP) que regulan dónde se deposita el calcio",
+      "Asociada a menor calcificación arterial en estudios observacionales",
+      "Posible sinergia con vitamina D y calcio para salud ósea",
+    ],
+    limitaciones: [
+      "Falta de ensayos clínicos grandes y de larga duración en humanos",
+      "La evidencia más sólida es observacional (no causal)",
+      "MK-7 (más biodisponible que MK-4) solo en algunos alimentos fermentados",
+      "Interacción con anticoagulantes tipo warfarina",
+    ],
+    alternativas: [
+      "Natto (fuente de MK-7 más concentrada del mundo, aunque con sabor intenso)",
+      "Quesos curados, yema de huevo, mantequilla de pasto",
+    ],
+    referencias: [
+      {
+        titulo: "Vitamin K2 and cardiovascular disease: observational evidence",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4566462/",
+      },
+    ],
+    contextoUso:
+      "100-200mcg/día de MK-7 (menaquinona-7). Tomar con grasa (liposoluble). Especialmente relevante si tomas vitamina D o calcio.",
+    evidenciaDetalle:
+      "La biología es convincente pero la evidencia clínica en humanos es escasa. Tiene sentido como complemento a la vitamina D si ya tienes los básicos cubiertos. Sin riesgo significativo y con potencial beneficio.",
+    paraQuien: [
+      "Personas que toman vitamina D o calcio",
+      "Hombres mayores preocupados por salud ósea y cardiovascular",
+    ],
+    paraQuienNo: [
+      "Personas con tratamiento anticoagulante sin consultar médico",
+      "Como prioridad antes de cubrir vitamina D, omega 3 y magnesio",
+    ],
+  },
+  {
+    id: "citrulina",
+    nombre: "L-Citrulina",
+    tipo: "suplemento",
+    categoria: "Rendimiento",
+    evidencia: 7,
+    coste: "bajo",
+    seguridad: "alta",
+    retorno: "alto",
+    veredicto: "Merece la pena",
+    descripcion:
+      "El mejor precursor de óxido nítrico disponible. Reduce el dolor muscular post-entrenamiento y mejora el rendimiento en ejercicio de alta intensidad.",
+    beneficios: [
+      "Aumenta los niveles de arginina plasmática más eficientemente que la arginina directa",
+      "Reduce el dolor muscular (DOMS) hasta un 40% en estudios controlados",
+      "Mejora el rendimiento en ejercicios de alta intensidad y repetición",
+      "Puede reducir la presión arterial en personas con hipertensión leve",
+    ],
+    limitaciones: [
+      "El malato de citrulina (forma más común) incluye ácido málico: la dosis de citrulina pura es menor",
+      "Efecto modesto en deportistas de élite bien entrenados",
+      "Sin efecto añadido si ya se toma arginina",
+    ],
+    alternativas: [
+      "Zumo de remolacha (nitrato natural, diferente mecanismo pero similar resultado)",
+      "Entrenamiento progresivo y recuperación adecuada",
+    ],
+    referencias: [
+      {
+        titulo: "L-Citrulline supplementation and exercise performance: a meta-analysis",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5368575/",
+      },
+    ],
+    contextoUso:
+      "6-8g de L-citrulina pura (o 8-10g de malato de citrulina 2:1), 30-60 min antes del entrenamiento. En ayunas o con algo ligero.",
+    evidenciaDetalle:
+      "Evidencia sólida para reducción del DOMS y mejora del rendimiento en resistencia muscular. La citrulina supera a la arginina como precursor de NO porque evita el metabolismo de primer paso intestinal.",
+    paraQuien: [
+      "Personas que hacen entrenamiento de fuerza o HIIT con volumen alto",
+      "Hombres que quieren reducir el dolor muscular post-entreno",
+    ],
+    paraQuienNo: [
+      "Sin entrenamiento de fuerza o alta intensidad",
+      "Personas con hipotensión",
+    ],
+  },
+  {
+    id: "berberina",
+    nombre: "Berberina",
+    tipo: "suplemento",
+    categoria: "Longevidad",
+    evidencia: 6,
+    coste: "medio",
+    seguridad: "media",
+    retorno: "medio",
+    veredicto: "Depende",
+    descripcion:
+      "El suplemento que más se parece a un fármaco. Efecto real sobre glucosa e insulina comparable en algunos estudios a la metformina. Pero también sus limitaciones.",
+    beneficios: [
+      "Reducción de glucosa en ayunas y HbA1c en diabéticos tipo 2 (comparada con metformina en estudios chinos)",
+      "Activa AMPK (vía del ejercicio y la restricción calórica)",
+      "Mejora el perfil lipídico: reduce LDL y triglicéridos",
+      "Efecto antimicrobiano y modulador de microbiota",
+    ],
+    limitaciones: [
+      "Baja biodisponibilidad oral (mitigar tomando con comida o BBR-encapsulada)",
+      "Puede causar problemas gastrointestinales: náuseas, diarrea",
+      "Interacciones con ciclosporina y otros fármacos metabolizados por CYP3A4",
+      "La mayoría de estudios son chinos con posibles sesgos metodológicos",
+      "No hay datos de seguridad a largo plazo en personas sanas",
+    ],
+    alternativas: [
+      "Metformina (prescripción médica, más evidencia, misma vía)",
+      "Ejercicio y dieta baja en azúcar (activan AMPK sin efectos adversos)",
+    ],
+    referencias: [
+      {
+        titulo: "Berberine and type 2 diabetes: a meta-analysis of randomized trials",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2410097/",
+      },
+    ],
+    contextoUso:
+      "500mg, 2-3 veces al día con comida. Ciclado recomendado (8 semanas uso, 4 descanso). Vigilar interacciones con otros fármacos.",
+    evidenciaDetalle:
+      "Tiene el mejor perfil de evidencia entre los suplementos para el control glucémico. El mecanismo AMPK es sólido. El problema es la calidad de los estudios y la falta de datos de seguridad a largo plazo en poblaciones occidentales.",
+    paraQuien: [
+      "Hombres con resistencia a la insulina o prediabetes",
+      "Personas con glucosa en ayunas elevada que no quieren farmacología",
+    ],
+    paraQuienNo: [
+      "Personas con glucosa normal (puede causar hipoglucemia)",
+      "Con medicación crónica sin revisar interacciones",
+      "Sin supervisión médica en diabéticos medicados",
+    ],
+  },
+  {
+    id: "curcumina",
+    nombre: "Curcumina",
+    tipo: "suplemento",
+    categoria: "Recuperación",
+    evidencia: 4,
+    coste: "medio",
+    seguridad: "alta",
+    retorno: "medio",
+    veredicto: "Depende",
+    descripcion:
+      "Principio activo de la cúrcuma con propiedades antiinflamatorias reales, pero con un problema enorme: prácticamente no se absorbe sin formulación especial.",
+    beneficios: [
+      "Efecto antiinflamatorio documentado (inhibe NF-κB y COX-2)",
+      "Reducción modesta del dolor articular en artritis en algunos estudios",
+      "Potencial efecto neuroprotector (en investigación)",
+    ],
+    limitaciones: [
+      "Biodisponibilidad pésima: la cúrcuma estándar no se absorbe casi nada",
+      "Se necesita formulación especial (con piperina, liposomal, fosfolípida) para efecto real",
+      "Los estudios positivos suelen usar formas patentadas muy diferentes a lo que se vende habitualmente",
+      "El efecto antiinflamatorio crónico puede no ser deseable en contexto deportivo",
+    ],
+    alternativas: [
+      "Ibuprofeno (para inflamación aguda, más efectivo a corto plazo)",
+      "Dieta antiinflamatoria: omega 3, verduras, aceite de oliva",
+      "Jengibre (antiinflamatorio similar con mejor absorción natural)",
+    ],
+    referencias: [
+      {
+        titulo: "Curcumin bioavailability and clinical efficacy: a review",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5664031/",
+      },
+    ],
+    contextoUso:
+      "Solo con formulaciones de alta biodisponibilidad: BCM-95, Meriva, o con piperina (pero la piperina interfiere con muchos fármacos). 500-1000mg de curcumina de alta absorción.",
+    evidenciaDetalle:
+      "El mecanismo antiinflamatorio es real. El problema es que los estudios positivos usan formas que no son las que se venden en la mayoría de tiendas. Si compras cúrcuma en polvo barata, probablemente estés tirando el dinero.",
+    paraQuien: [
+      "Personas con dolor articular crónico que quieren una alternativa a los AINEs",
+      "Solo si se elige una formulación de biodisponibilidad comprobada",
+    ],
+    paraQuienNo: [
+      "Con anticoagulantes o antiagregantes",
+      "Si se compra en forma de cúrcuma en polvo estándar sin formulación especial",
+    ],
+  },
+  {
+    id: "probioticos",
+    nombre: "Probióticos",
+    tipo: "suplemento",
+    categoria: "Vitaminas y minerales",
+    evidencia: 5,
+    coste: "medio",
+    seguridad: "alta",
+    retorno: "medio",
+    veredicto: "Depende",
+    descripcion:
+      "La evidencia es muy específica por cepa y por condición. Funcionan para ciertas cosas concretas, no como tónico general. La colonización permanente es un mito.",
+    beneficios: [
+      "Evidencia sólida para diarrea asociada a antibióticos (Lactobacillus rhamnosus GG, S. boulardii)",
+      "SII (síndrome de intestino irritable): ciertos consorcios reducen síntomas",
+      "Efectos inmunomoduladores temporales documentados",
+    ],
+    limitaciones: [
+      "Los efectos son cepa-específicos: el producto del súper raramente tiene las cepas estudiadas",
+      "La colonización a largo plazo es mínima: al parar el suplemento, desaparecen en semanas",
+      "Los alimentos fermentales (kéfir, yogur, chucrut) pueden ser igual de efectivos y más baratos",
+      "Sin utilidad demostrada en personas sanas con buena dieta",
+    ],
+    alternativas: [
+      "Kéfir, yogur natural, chucrut, kimchi, miso (prebióticos y probióticos en alimento real)",
+      "Fibra prebiótica (alimenta la microbiota existente en lugar de añadir nuevas bacterias)",
+    ],
+    referencias: [
+      {
+        titulo: "Probiotics and antibiotic-associated diarrhea: a meta-analysis",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4006993/",
+      },
+    ],
+    contextoUso:
+      "Solo con indicación clara (antibióticos, SII). Elegir producto con cepa específica estudiada para la condición. Refrigerar correctamente.",
+    evidenciaDetalle:
+      "La clave es que 'probiótico' no es una categoría homogénea. Lactobacillus acidophilus y Bifidobacterium longum son géneros, no cepas. Lo que funciona para diarrea post-antibiótico no funciona para el estado de ánimo general.",
+    paraQuien: [
+      "Personas tomando antibióticos (para prevenir disbiosis)",
+      "Personas con SII diagnosticado buscando alivio sintomático",
+    ],
+    paraQuienNo: [
+      "Como suplemento general de salud sin indicación concreta",
+      "Personas inmunocomprometidas (riesgo de infección, consultar médico)",
+    ],
+  },
+
+  // ─── ALIMENTOS ───────────────────────────────────────────────────────────────
   {
     id: "cafe",
     nombre: "Café",
@@ -1003,6 +1493,40 @@ export const items: Item[] = [
       {
         titulo: "Alcohol use and burden for 195 countries: GBD 2016",
         url: "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)31310-2/fulltext",
+      },
+    ],
+  },
+  {
+    id: "kefir",
+    nombre: "Kéfir",
+    tipo: "bebida",
+    categoria: "Bebidas",
+    evidencia: 7,
+    coste: "bajo",
+    seguridad: "alta",
+    retorno: "alto",
+    veredicto: "Merece la pena",
+    descripcion:
+      "El alimento fermentado con más evidencia para la microbiota intestinal. Más diversidad de cepas que cualquier probiótico comercial, y más barato.",
+    beneficios: [
+      "Mayor diversidad de bacterias y levaduras beneficiosas que cualquier probiótico en cápsula",
+      "Mejora la tolerancia a la lactosa incluso en personas intolerantes",
+      "Efecto inmunomodulador y antiinflamatorio documentado",
+      "Proteína completa, calcio, fósforo y vitamina B12",
+    ],
+    limitaciones: [
+      "Sabor ácido que requiere adaptación (el kéfir con azúcar añadido anula parte del beneficio)",
+      "El kéfir de supermercado tiene menos diversidad microbiana que el tradicional con nódulos",
+      "Puede causar molestias gastrointestinales transitorias en las primeras semanas",
+    ],
+    alternativas: [
+      "Yogur natural (menos diversidad pero más accesible)",
+      "Chucrut, kimchi, miso (fermentados sólidos con perfil diferente)",
+    ],
+    referencias: [
+      {
+        titulo: "Kefir consumption and gut microbiota: a randomized trial",
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4854945/",
       },
     ],
   },

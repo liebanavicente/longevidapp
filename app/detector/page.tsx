@@ -56,137 +56,167 @@ const ejemplos = [
   "El omega 3 protege el corazón",
 ];
 
-// Mock responses based on keyword patterns
-function analizarAfirmacion(afirmacion: string): ResultadoDetector {
-  const texto = afirmacion.toLowerCase();
+// Suplementos con evidencia sólida en humanos
+const EVIDENCIA_SOLIDA = [
+  "creatina", "omega 3", "omega-3", "vitamina d", "vitamina d3", "magnesio",
+  "cafeína", "cafeina", "proteína", "proteina", "fibra", "zinc",
+  "melatonina", "folato", "ácido fólico", "acido folico", "hierro",
+  "calcio", "vitamina b12", "yodo",
+];
 
-  // High smoke patterns
-  if (
-    texto.includes("rejuvenece") ||
-    texto.includes("rejuvenecer") ||
-    texto.includes("años más joven") ||
-    texto.includes("revertir el envejecimiento")
-  ) {
+// Palabras que indican afirmaciones exageradas o cuantificaciones extremas
+const SEÑALES_HUMO_ALTO = [
+  "triplica", "duplica", "cuadruplica", "multiplica",
+  "rejuvenece", "revierte", "cura", "elimina", "borra",
+  "milagro", "milagroso", "revolucionario", "secreto",
+  "médicos no quieren", "big pharma", "censurado",
+  "100%", "instantáneo", "inmediato", "garantizado",
+  "sin esfuerzo", "sin dieta", "sin ejercicio",
+  "pierde", "adelgaza", "quema grasa",
+  "años más joven", "años de vida",
+];
+
+// Palabras de marketing moderado
+const SEÑALES_HUMO_MODERADO = [
+  "activa", "potencia", "estimula", "optimiza", "mejora",
+  "longevidad", "antiaging", "anti-aging", "antienvejecimiento",
+  "detox", "depura", "limpia", "desintoxica",
+  "genes", "mitocondria", "telómeros", "sirtuinas",
+  "inflamación", "inflamacion", "cortisol", "testosterona",
+  "inmunidad", "sistema inmune", "defensas",
+  "serotonina", "dopamina", "endorfinas",
+  "gut", "microbioma", "probiótico", "prebiótico",
+];
+
+// Suplementos conocidos como humo casi total
+const HUMO_ASTRONOMICO = [
+  "homeopatía", "homeopatia", "flores de bach", "agua cuántica",
+  "agua cuantica", "energía cuántica", "energia cuantica",
+  "cristales", "biomagnetismo", "biorresonancia",
+  "detox de metales pesados", "limpieza hepática",
+];
+
+function analizarAfirmacion(texto: string): ResultadoDetector {
+  const t = texto.toLowerCase();
+
+  // Detectar humo astronómico
+  const esAstronomico = HUMO_ASTRONOMICO.some((p) => t.includes(p));
+  if (esAstronomico) {
     return {
       nivelHumo: "astronómico",
-      puntuacion: 9,
-      titular: "Afirmación de rejuvenecimiento: máxima alerta",
+      puntuacion: 10,
+      titular: "Pseudociencia sin base científica",
       explicacion:
-        'Afirmaciones de "rejuvenecimiento" medible en años no tienen respaldo en estudios clínicos en humanos. El envejecimiento es un proceso complejo con cientos de mecanismos implicados. Ningún suplemento ha demostrado revertirlo de forma medible en personas reales. Esta es la afirmación clásica de marketing anti-aging: suena científica, apela al miedo, y no tiene que demostrar nada concreto.',
+        "Esta afirmación pertenece a categorías que carecen completamente de respaldo en literatura científica revisada por pares. No existe mecanismo biológico plausible ni ensayo clínico controlado que sustente este tipo de afirmaciones.",
       señalesDeAlerta: [
-        'Uso de número específico ("10 años") sin metodología de medición definida',
-        "Apela a estudios en animales o células como prueba en humanos",
-        "Normalmente respaldada por alguien con conflicto de interés económico",
-        "Imposible de falsificar o comprobar en la práctica",
+        "Sin mecanismo biológico verificable",
+        "Ausencia total de ensayos clínicos en humanos",
+        "Terminología pseudocientífica sin definición operativa",
       ],
       queComprobar: [
-        "Busca el estudio en PubMed: ¿es en humanos? ¿Cuántos participantes? ¿Quién lo financió?",
-        'Busca el nombre del suplemento + "clinical trial" + "humans" en Google Scholar',
-        "Comprueba si quien hace la afirmación tiene empresa o patente relacionada",
-        "Pregúntate: ¿qué marcador concreto mide el 'rejuvenecimiento'?",
+        "Buscar el término en PubMed — probablemente sin resultados relevantes",
+        "Consultar Cochrane Library para revisiones sistemáticas",
+        "Verificar si el organismo regulador (EFSA, FDA) ha emitido advertencias",
       ],
     };
   }
 
-  if (
-    texto.includes("triplica") ||
-    texto.includes("multiplica") ||
-    texto.includes("duplica") ||
-    (texto.includes("testosterona") && texto.includes("aumenta"))
-  ) {
-    return {
-      nivelHumo: "alto",
-      puntuacion: 8,
-      titular: "Afirmación hormonal exagerada",
-      explicacion:
-        "Los efectos de suplementos sobre testosterona endógena son, en el mejor caso, modestos (10-20% en hombres con niveles subóptimos). Afirmaciones de triplicar o duplicar niveles hormonales no tienen respaldo científico en estudios controlados. Para hombres con niveles normales, la mayoría de suplementos 'potenciadores de testosterona' no muestran efecto estadísticamente significativo.",
-      señalesDeAlerta: [
-        "Multiplicadores extremos sin referencia de punto de partida",
-        "No especifica si el efecto es en personas con déficit o con niveles normales",
-        "Confunde correlación con causalidad en estudios observacionales",
-        "Suele acompañarse de testimoniales en lugar de datos",
-      ],
-      queComprobar: [
-        "¿El estudio es en hombres con niveles bajos o normales de testosterona?",
-        "¿Cuánto es el incremento en valores absolutos (ng/dL), no solo porcentual?",
-        "¿Es un cambio dentro del rango normal o suprafisiológico?",
-        "Busca el meta-análisis más reciente sobre ese suplemento y testosterona",
-      ],
-    };
-  }
+  const conteoHumoAlto = SEÑALES_HUMO_ALTO.filter((p) => t.includes(p)).length;
+  const conteoModerado = SEÑALES_HUMO_MODERADO.filter((p) => t.includes(p)).length;
+  const tieneEvidencia = EVIDENCIA_SOLIDA.some((p) => t.includes(p));
 
-  if (
-    texto.includes("cura") ||
-    texto.includes("elimina") ||
-    texto.includes("previene") ||
-    texto.includes("anticancerígeno")
-  ) {
-    return {
-      nivelHumo: "alto",
-      puntuacion: 7,
-      titular: "Afirmación terapéutica sin respaldo",
-      explicacion:
-        'Las afirmaciones de "cura", "elimina" o "previene" enfermedades específicas para suplementos son ilegales en la UE sin respaldo de estudios clínicos aprobados. Incluso cuando hay evidencia parcial (como el omega 3 y triglicéridos), el efecto es de reducción de riesgo, no de eliminación. Desconfía de cualquier suplemento que prometa efectos que los fármacos regulados no pueden garantizar.',
-      señalesDeAlerta: [
-        "Lenguaje absoluto sin matices probabilísticos",
-        "Apela a estudios in vitro o en animales como prueba de eficacia en humanos",
-        "No especifica tamaño del efecto ni magnitud real del beneficio",
-        "Ausencia de advertencias o contraindicaciones",
-      ],
-      queComprobar: [
-        "¿El estudio de referencia es en humanos y aleatorizado?",
-        "¿Cuál es el NNT (número necesario a tratar) para obtener el beneficio?",
-        "¿Qué dice la EFSA (Agencia Europea de Seguridad Alimentaria) sobre ese claim?",
-        "Busca 'systematic review' o 'meta-analysis' del suplemento en PubMed",
-      ],
-    };
-  }
+  // Porcentajes o números grandes son señal de alerta
+  const tieneNumeroGrande = /\d{2,}[\s]*(%|por ciento|veces|años)/i.test(texto);
+  const tienePorcentaje = /%/.test(texto);
 
-  // Low smoke - evidence-based claims
-  if (
-    (texto.includes("creatina") && (texto.includes("fuerza") || texto.includes("masa muscular"))) ||
-    (texto.includes("proteína") && texto.includes("músculo")) ||
-    (texto.includes("vitamina d") && texto.includes("déficit")) ||
-    (texto.includes("omega 3") && texto.includes("triglicéridos"))
-  ) {
+  const señalesDetectadas: string[] = [];
+  if (tieneNumeroGrande || tienePorcentaje)
+    señalesDetectadas.push("Cuantificación específica sin respaldo en el contexto");
+  if (conteoHumoAlto > 0)
+    señalesDetectadas.push("Lenguaje de efecto absoluto o transformador");
+  if (conteoModerado > 1)
+    señalesDetectadas.push("Terminología de mecanismo sin ensayo clínico en humanos");
+  if (!tieneEvidencia && conteoModerado > 0)
+    señalesDetectadas.push("Suplemento con evidencia limitada o emergente");
+
+  while (señalesDetectadas.length < 2)
+    señalesDetectadas.push("Afirmación no especifica dosis, duración ni población diana");
+
+  const queComprobar = [
+    "Buscar meta-análisis en PubMed con el nombre del suplemento",
+    "Comprobar si la EFSA o FDA han aprobado la afirmación de salud",
+    "Verificar si los estudios son en humanos, no en ratas o in vitro",
+  ];
+
+  // Lógica de puntuación
+  if (tieneEvidencia && conteoHumoAlto === 0 && conteoModerado <= 1) {
     return {
       nivelHumo: "bajo",
       puntuacion: 2,
-      titular: "Afirmación respaldada por evidencia sólida",
+      titular: "Evidencia sólida con matices importantes",
       explicacion:
-        "Esta afirmación está en línea con la literatura científica. Hay estudios controlados, meta-análisis y consenso entre organismos científicos independientes que respaldan este efecto. El tamaño del efecto es modesto pero real y replicable.",
+        "Este ingrediente tiene respaldo en ensayos clínicos en humanos para el beneficio mencionado. Aunque la evidencia es más robusta que la mayoría, los efectos concretos dependen de dosis, forma, contexto de uso y población. Consulta los RCTs originales para entender el tamaño del efecto real.",
       señalesDeAlerta: [
-        "Incluso afirmaciones correctas pueden tener matices importantes",
-        "El efecto puede ser mayor o menor según el punto de partida individual",
-        "La calidad del producto y la dosis importan",
+        "El efecto puede ser modesto en personas sin déficit previo",
+        "La calidad del suplemento varía según fabricante",
+        "Los estudios no siempre reflejan tu contexto específico",
       ],
-      queComprobar: [
-        "Comprueba que la dosis en el producto coincide con la usada en estudios",
-        "Verifica que no tienes contraindicaciones específicas",
-        "Consulta si el beneficio aplica a tu situación concreta",
-      ],
+      queComprobar,
     };
   }
 
-  // Moderate smoke - default
+  if (tieneEvidencia && (conteoHumoAlto >= 1 || conteoModerado >= 2)) {
+    return {
+      nivelHumo: "moderado",
+      puntuacion: 5,
+      titular: "Ingrediente real, afirmación exagerada",
+      explicacion:
+        "El ingrediente tiene evidencia en humanos, pero la afirmación tal como está formulada exagera o simplifica los resultados. Los estudios suelen mostrar efectos más modestos, en poblaciones específicas y con dosis controladas. El lenguaje marketing amplifica el efecto real.",
+      señalesDeAlerta: señalesDetectadas,
+      queComprobar,
+    };
+  }
+
+  if (conteoHumoAlto >= 2 || (conteoHumoAlto >= 1 && tieneNumeroGrande)) {
+    return {
+      nivelHumo: "astronómico",
+      puntuacion: 9,
+      titular: "Promesa imposible de verificar",
+      explicacion:
+        "La afirmación combina lenguaje de efecto absoluto con cuantificaciones que no tienen respaldo en la literatura científica. Este tipo de claims son característicos del marketing de suplementos con escasa o nula evidencia en humanos.",
+      señalesDeAlerta: [
+        "Promesa de resultado medible sin ensayo clínico que la respalde",
+        "Lenguaje absoluto incompatible con la complejidad biológica",
+        ...señalesDetectadas.slice(0, 1),
+      ],
+      queComprobar,
+    };
+  }
+
+  if (conteoHumoAlto >= 1 || conteoModerado >= 2) {
+    return {
+      nivelHumo: "alto",
+      puntuacion: 7,
+      titular: "Afirmación exagerada sin respaldo adecuado",
+      explicacion:
+        "La afirmación usa mecanismos o promesas que superan lo que la evidencia actual puede sostener. Puede haber estudios preliminares o en animales, pero los ensayos en humanos son escasos, pequeños o con resultados mixtos. El lenguaje terapéutico no está justificado.",
+      señalesDeAlerta: señalesDetectadas,
+      queComprobar,
+    };
+  }
+
   return {
     nivelHumo: "moderado",
     puntuacion: 5,
-    titular: "Afirmación con evidencia parcial o mixta",
+    titular: "Evidencia insuficiente para la afirmación",
     explicacion:
-      "Esta afirmación puede tener algo de base, pero probablemente la evidencia es más débil, más limitada o más matizada de lo que sugiere el marketing. Puede haber estudios que la respalden, pero también otros que no la replican, o la evidencia puede ser en poblaciones específicas que no aplican a tu caso.",
+      "La afirmación no es claramente falsa pero tampoco está bien respaldada. Puede haber señales prometedoras en investigación preliminar, pero la evidencia en humanos es limitada, inconsistente o no directamente aplicable a la afirmación concreta.",
     señalesDeAlerta: [
-      "Ausencia de magnitud del efecto: ¿cuánto exactamente?",
-      "No especifica en qué población se observó el efecto",
-      "Puede basarse en estudios preliminares que aún no se han replicado",
-      "Lenguaje vago: 'puede ayudar', 'podría mejorar'",
+      "Evidencia mayoritariamente in vitro o en animales",
+      "Falta de ensayos clínicos de calidad en humanos",
+      "La afirmación generaliza más de lo que los datos permiten",
     ],
-    queComprobar: [
-      "Busca el meta-análisis más reciente (no el estudio individual más favorable)",
-      "Comprueba el tamaño muestral y si el estudio fue financiado por la empresa",
-      "Busca si hay estudios independientes que lo repliquen",
-      "Evalúa si el coste/beneficio tiene sentido aunque el efecto sea real y pequeño",
-    ],
+    queComprobar,
   };
 }
 
@@ -201,7 +231,7 @@ export default function DetectorPage() {
     setTimeout(() => {
       setResultado(analizarAfirmacion(afirmacion));
       setAnalizando(false);
-    }, 800);
+    }, 600);
   };
 
   const config = resultado ? nivelHumoConfig[resultado.nivelHumo] : null;
@@ -217,8 +247,9 @@ export default function DetectorPage() {
           Basado en patrones comunes de marketing pseudocientífico.
         </p>
         <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full px-3 py-1">
+          <span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />
           <span className="text-xs font-medium text-amber-700">
-            Mock educativo — no sustituye análisis científico real
+            Análisis educativo basado en patrones — no sustituye revisión científica independiente
           </span>
         </div>
       </div>
@@ -334,10 +365,10 @@ export default function DetectorPage() {
           ¿Cómo funciona el detector?
         </h3>
         <p className="text-sm text-zinc-500 leading-relaxed">
-          Analiza patrones lingüísticos comunes en el marketing de suplementos: afirmaciones
-          absolutas, cuantificaciones extremas, terminología pseudocientífica y promesas sin
-          mecanismo concreto. Es un filtro educativo, no un sistema de inteligencia artificial.
-          Para análisis riguroso, acude siempre a PubMed y meta-análisis independientes.
+          Detecta patrones comunes de marketing pseudocientífico: lenguaje de efecto absoluto,
+          cuantificaciones sin respaldo, mecanismos no probados en humanos y suplementos con
+          escasa evidencia clínica. Es una herramienta educativa. Para análisis riguroso, acude
+          siempre a PubMed y meta-análisis independientes.
         </p>
       </div>
     </div>
