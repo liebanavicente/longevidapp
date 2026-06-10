@@ -1,12 +1,15 @@
 import Link from "next/link";
-import { suplementos } from "@/data/suplementos";
-import SuplementoCard from "@/components/SuplementoCard";
+import { items, getGrandesAliados } from "@/data/items";
+import ItemCard from "@/components/ItemCard";
 
-const topSuplementos = suplementos
-  .filter((s) => s.veredicto === "Merece la pena")
-  .slice(0, 3);
+const topAliados = getGrandesAliados().slice(0, 3);
 
 export default function Home() {
+  const totalItems = items.length;
+  const conEvidenciaSolida = items.filter((i) => i.evidencia >= 7).length;
+  const merecenLaPena = items.filter((i) => i.veredicto === "Merece la pena").length;
+  const probableHumo = items.filter((i) => i.veredicto === "Probablemente humo").length;
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-16 space-y-20">
       {/* Hero */}
@@ -18,25 +21,35 @@ export default function Home() {
           </span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-900 leading-tight max-w-2xl">
-          Descubre qué suplementos y hábitos merecen la pena{" "}
-          <span className="text-emerald-600">de verdad</span>
+          Qué comer, qué beber y qué tomar para vivir{" "}
+          <span className="text-emerald-600">más y mejor</span>
         </h1>
         <p className="text-lg text-zinc-500 max-w-xl leading-relaxed">
-          Según evidencia, coste y seguridad. Para hombres de 40+ que quieren mejorar
-          su salud sin caer en el hype de Bryan Johnson ni en los 80€ de NMN al mes.
+          Evaluamos alimentos, bebidas y suplementos por evidencia real, coste y
+          seguridad. Para hombres de 40+ que quieren resultados sin caer en el hype
+          ni en los 80€ de NMN al mes.
+        </p>
+        <p className="text-sm text-zinc-400 max-w-lg">
+          Spoiler: la mayoría de los grandes aliados son alimentos reales, no suplementos.
         </p>
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/suplementos"
+            href="/catalogo"
             className="inline-flex items-center gap-2 bg-zinc-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-zinc-700 transition-colors"
           >
-            Ver todos los suplementos
+            Ver el catálogo completo
+          </Link>
+          <Link
+            href="/grandes-aliados"
+            className="inline-flex items-center gap-2 bg-emerald-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-emerald-500 transition-colors"
+          >
+            Grandes aliados
           </Link>
           <Link
             href="/ranking"
             className="inline-flex items-center gap-2 bg-white text-zinc-700 border border-zinc-200 px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-zinc-50 transition-colors"
           >
-            Ver el ranking por objetivos
+            Ranking por retorno
           </Link>
           <Link
             href="/detector"
@@ -50,19 +63,10 @@ export default function Home() {
       {/* Stats */}
       <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
-          { label: "Suplementos analizados", value: `${suplementos.length}` },
-          {
-            label: "Con evidencia sólida",
-            value: `${suplementos.filter((s) => s.evidencia >= 7).length}`,
-          },
-          {
-            label: "Que merecen la pena",
-            value: `${suplementos.filter((s) => s.veredicto === "Merece la pena").length}`,
-          },
-          {
-            label: "Probablemente humo",
-            value: `${suplementos.filter((s) => s.veredicto === "Probablemente humo").length}`,
-          },
+          { label: "Elementos evaluados", value: `${totalItems}` },
+          { label: "Con evidencia sólida", value: `${conEvidenciaSolida}` },
+          { label: "Que merecen la pena", value: `${merecenLaPena}` },
+          { label: "Probablemente humo", value: `${probableHumo}` },
         ].map(({ label, value }) => (
           <div
             key={label}
@@ -74,45 +78,50 @@ export default function Home() {
         ))}
       </section>
 
-      {/* Top picks */}
+      {/* Top aliados */}
       <section className="space-y-5">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-zinc-900">
-            Los que de verdad merecen la pena
+            Los grandes aliados
           </h2>
           <Link
-            href="/ranking"
+            href="/grandes-aliados"
             className="text-sm text-zinc-400 hover:text-zinc-600 transition-colors"
           >
-            Ver ranking completo →
+            Ver todos →
           </Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-3">
-          {topSuplementos.map((s) => (
-            <SuplementoCard key={s.slug} s={s} />
+          {topAliados.map((i) => (
+            <ItemCard key={i.id} item={i} />
           ))}
         </div>
       </section>
 
-      {/* How it works */}
+      {/* Cómo evaluamos */}
       <section className="bg-white border border-zinc-200 rounded-2xl p-8 space-y-6">
         <h2 className="text-xl font-bold text-zinc-900">Cómo evaluamos</h2>
-        <div className="grid sm:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-4 gap-6">
           {[
             {
               icon: "🔬",
               title: "Evidencia",
-              desc: "Puntuamos del 1 al 10 según la solidez de los estudios: RCTs, meta-análisis, tamaño muestral y reproducibilidad.",
+              desc: "Del 1 al 10 según la solidez: RCTs, meta-análisis, tamaño muestral y reproducibilidad.",
             },
             {
               icon: "💶",
-              title: "Coste real",
-              desc: "Bajo, medio o alto según el precio mensual real en España, comparando con alternativas alimenticias.",
+              title: "Coste",
+              desc: "Bajo, medio o alto según el precio real mensual en España.",
             },
             {
               icon: "🛡️",
               title: "Seguridad",
-              desc: "Perfil de efectos adversos, interacciones medicamentosas conocidas y tiempo de uso seguro documentado.",
+              desc: "Efectos adversos conocidos, interacciones y tiempo de uso documentado.",
+            },
+            {
+              icon: "📈",
+              title: "Retorno",
+              desc: "Juicio compuesto: ¿vale la pena el tiempo, dinero y esfuerzo invertido?",
             },
           ].map(({ icon, title, desc }) => (
             <div key={title} className="space-y-2">
@@ -131,8 +140,9 @@ export default function Home() {
             ¿Te han vendido la moto?
           </h2>
           <p className="text-zinc-400 text-sm max-w-md">
-            Pega cualquier afirmación de suplemento y te decimos el nivel de humo.
-            "El NMN rejuvenece 10 años". "La ashwagandha triplica tu testosterona".
+            Pega cualquier afirmación sobre alimentos o suplementos y te decimos
+            cuánto humo contiene. &ldquo;El NMN rejuvenece 10 años&rdquo;.
+            &ldquo;El resveratrol activa los genes de la longevidad&rdquo;.
           </p>
         </div>
         <Link

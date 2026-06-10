@@ -1,20 +1,20 @@
 import Link from "next/link";
 
-const categorias = [
+const grupos = [
   {
     id: "habitos",
     titulo: "Hábitos de base",
-    subtitulo: "Sin esto, los suplementos son ruido",
+    subtitulo: "Sin esto, todo lo demás es ruido",
     items: [
       {
         posicion: 1,
         nombre: "Sueño 7-9 horas",
         tipo: "habito",
         descripcion:
-          "Recuperación hormonal, cortisol, testosterona, función cognitiva. No hay suplemento que lo sustituya.",
+          "Recuperación hormonal, cortisol, testosterona, función cognitiva. Ningún alimento ni suplemento lo sustituye.",
         impacto: 10,
         coste: "Gratuito",
-        slug: null,
+        id: null,
       },
       {
         posicion: 2,
@@ -23,8 +23,8 @@ const categorias = [
         descripcion:
           "El mejor antienvejecimiento conocido. Masa muscular, huesos, sensibilidad a la insulina, testosterona.",
         impacto: 10,
-        coste: "Bajo",
-        slug: null,
+        coste: "Gratuito / Bajo",
+        id: null,
       },
       {
         posicion: 3,
@@ -34,158 +34,245 @@ const categorias = [
           "Salud cardiovascular, mitocondrias, VO2 max. 150-180 min/semana de caminata rápida o bici.",
         impacto: 9,
         coste: "Gratuito",
-        slug: null,
-      },
-      {
-        posicion: 4,
-        nombre: "Dieta mediterránea + proteína adecuada",
-        tipo: "habito",
-        descripcion:
-          "1.6-2.2g de proteína/kg. Aceite de oliva, verduras, legumbres, pescado. Más útil que cualquier suplemento.",
-        impacto: 9,
-        coste: "Bajo-Medio",
-        slug: null,
+        id: null,
       },
     ],
   },
   {
-    id: "alta-evidencia",
-    titulo: "Suplementos con alta evidencia",
-    subtitulo: "Funcionan, son baratos, están bien estudiados",
+    id: "alimentacion",
+    titulo: "Alimentación de base",
+    subtitulo: "Más impacto que cualquier suplemento. Más barato también.",
     items: [
       {
+        posicion: 4,
+        nombre: "Aceite de oliva virgen extra",
+        tipo: "alimento",
+        descripcion:
+          "PREDIMED: reducción del 30% en eventos cardiovasculares. La grasa más respaldada por evidencia.",
+        impacto: 9,
+        coste: "Medio",
+        id: "aceite-oliva",
+      },
+      {
         posicion: 5,
+        nombre: "Huevos",
+        tipo: "alimento",
+        descripcion:
+          "Proteína completa, colina, vitaminas liposolubles. El miedo al colesterol dietético ha quedado obsoleto.",
+        impacto: 9,
+        coste: "Bajo",
+        id: "huevos",
+      },
+      {
+        posicion: 6,
+        nombre: "Sardinas",
+        tipo: "alimento",
+        descripcion:
+          "Omega 3, proteína, calcio, vitamina D y B12. El suplemento de omega 3 más barato que existe.",
+        impacto: 9,
+        coste: "Bajo",
+        id: "sardinas",
+      },
+      {
+        posicion: 7,
+        nombre: "Legumbres (lentejas, garbanzos)",
+        tipo: "alimento",
+        descripcion:
+          "Proteína vegetal, fibra, minerales. Base de la dieta mediterránea y la longevidad en las zonas azules.",
+        impacto: 8,
+        coste: "Muy bajo",
+        id: "lentejas",
+      },
+      {
+        posicion: 8,
+        nombre: "Yogur griego natural",
+        tipo: "alimento",
+        descripcion:
+          "Alta proteína, probióticos, calcio. Uno de los mejores snacks para quien entrena.",
+        impacto: 8,
+        coste: "Bajo",
+        id: "yogur-griego",
+      },
+      {
+        posicion: 9,
+        nombre: "Nueces y frutos secos",
+        tipo: "alimento",
+        descripcion:
+          "Omega 3 vegetal, magnesio, vitamina E. Reducción de mortalidad total documentada.",
+        impacto: 8,
+        coste: "Medio",
+        id: "nueces",
+      },
+      {
+        posicion: 10,
+        nombre: "Café",
+        tipo: "bebida",
+        descripcion:
+          "Protección neurológica, hepática y metabólica. Uno de los alimentos más estudiados del mundo.",
+        impacto: 8,
+        coste: "Bajo",
+        id: "cafe",
+      },
+    ],
+  },
+  {
+    id: "suplementos",
+    titulo: "Suplementos con alta evidencia",
+    subtitulo: "Útiles cuando la dieta no llega o hay déficit real",
+    items: [
+      {
+        posicion: 11,
         nombre: "Creatina monohidrato",
         tipo: "suplemento",
         descripcion:
           "El suplemento más respaldado por evidencia. Fuerza, masa muscular, posible neuroprotección.",
         impacto: 8,
         coste: "Bajo (~10-15€/mes)",
-        slug: "creatina",
+        id: "creatina",
       },
       {
-        posicion: 6,
+        posicion: 12,
         nombre: "Vitamina D (si hay déficit)",
         tipo: "suplemento",
         descripcion:
           "Crítica si tienes déficit. Huesos, inmunidad, estado de ánimo. Analítica primero.",
         impacto: 8,
         coste: "Muy bajo (~3-5€/mes)",
-        slug: "vitamina-d",
+        id: "vitamina-d",
       },
       {
-        posicion: 7,
-        nombre: "Omega 3 (si no comes pescado)",
+        posicion: 13,
+        nombre: "Omega 3 (si no comes pescado azul)",
         tipo: "suplemento",
         descripcion:
           "Triglicéridos, inflamación, corazón. Si ya comes sardinas 2x/semana, ahórratelo.",
         impacto: 7,
         coste: "Medio (~15-25€/mes)",
-        slug: "omega-3",
+        id: "omega-3",
       },
       {
-        posicion: 8,
+        posicion: 14,
         nombre: "Proteína whey (si no llegas)",
         tipo: "suplemento",
         descripcion:
           "Conveniente y eficaz para cubrir proteína. No es mágico: es solo proteína.",
         impacto: 7,
         coste: "Bajo (~20-30€/mes)",
-        slug: "proteina-whey",
+        id: "proteina-whey",
       },
       {
-        posicion: 9,
+        posicion: 15,
         nombre: "Magnesio glicinato",
         tipo: "suplemento",
         descripcion:
           "Sueño, estrés, función muscular. El déficit es muy común. Barato y seguro.",
         impacto: 7,
         coste: "Bajo (~8-15€/mes)",
-        slug: "magnesio",
+        id: "magnesio",
       },
     ],
   },
   {
-    id: "evidencia-moderada",
+    id: "moderada",
     titulo: "Evidencia moderada",
     subtitulo: "Pueden tener sentido en contextos específicos",
     items: [
       {
-        posicion: 10,
+        posicion: 16,
         nombre: "Ashwagandha",
         tipo: "suplemento",
         descripcion:
           "Para estrés crónico elevado. Modesto pero real. No es un potenciador hormonal milagroso.",
         impacto: 5,
         coste: "Medio (~15-25€/mes)",
-        slug: "ashwagandha",
+        id: "ashwagandha",
       },
       {
-        posicion: 11,
+        posicion: 17,
         nombre: "Melatonina (baja dosis)",
         tipo: "suplemento",
         descripcion:
           "Para jet lag o ritmo circadiano alterado. A dosis de 0.5-1mg, no las 5mg del mercado.",
         impacto: 5,
         coste: "Muy bajo (~5€/mes)",
-        slug: "melatonina",
+        id: "melatonina",
       },
       {
-        posicion: 12,
-        nombre: "Cafeína",
-        tipo: "suplemento",
+        posicion: 18,
+        nombre: "Té verde",
+        tipo: "bebida",
         descripcion:
-          "El ergogénico más efectivo. Funciona. El problema es la tolerancia y el sueño.",
-        impacto: 6,
-        coste: "Muy bajo",
-        slug: "cafeina",
+          "L-teanina + cafeína: foco sin ansiedad. EGCG con efecto antiinflamatorio modesto.",
+        impacto: 5,
+        coste: "Bajo",
+        id: "te-verde",
       },
       {
-        posicion: 13,
+        posicion: 19,
         nombre: "Colágeno (con vitamina C)",
         tipo: "suplemento",
         descripcion:
           "Para articulaciones, con resultados modestos. Para piel, el marketing supera la evidencia.",
         impacto: 4,
         coste: "Medio (~20-35€/mes)",
-        slug: "colageno",
+        id: "colageno",
       },
       {
-        posicion: 14,
+        posicion: 20,
         nombre: "Multivitamínico",
         tipo: "suplemento",
         descripcion:
-          "Seguro barato si tu dieta es deficiente. No previene enfermedades en personas que comen bien.",
+          "Red de seguridad barata si tu dieta es deficiente. No previene enfermedades en quienes comen bien.",
         impacto: 3,
         coste: "Bajo (~10-20€/mes)",
-        slug: "multivitaminico",
+        id: "multivitaminico",
       },
     ],
   },
   {
-    id: "humo",
-    titulo: "Probablemente humo",
-    subtitulo: "Prometían mucho. Los estudios en humanos decepcionan.",
+    id: "evitar",
+    titulo: "Evitar o reducir al máximo",
+    subtitulo: "El retorno es negativo o mínimo para la salud",
     items: [
       {
-        posicion: 15,
+        posicion: 21,
+        nombre: "Refrescos zero",
+        tipo: "bebida",
+        descripcion:
+          "Mejores que los azucarados, peores que el agua. Útiles como transición, no como hábito.",
+        impacto: 2,
+        coste: "Bajo",
+        id: "refrescos-zero",
+      },
+      {
+        posicion: 22,
+        nombre: "Alcohol",
+        tipo: "bebida",
+        descripcion:
+          "No existe nivel seguro. Cancerígeno, rompe el sueño, inhibe síntesis proteica.",
+        impacto: 1,
+        coste: "Medio",
+        id: "alcohol",
+      },
+      {
+        posicion: 23,
         nombre: "NMN / NAD+",
         tipo: "suplemento",
         descripcion:
           "Espectacular en ratones. Estudios en humanos pequeños y sin resultados concluyentes. Precio desorbitado.",
         impacto: 2,
         coste: "Muy alto (~80-150€/mes)",
-        slug: "nmn",
+        id: "nmn",
       },
       {
-        posicion: 16,
+        posicion: 24,
         nombre: "Resveratrol",
         tipo: "suplemento",
         descripcion:
-          "El 'componente activo del vino tinto' que ha fallado en todos los ensayos clínicos rigurosos en humanos.",
+          "Ha fallado en todos los ensayos clínicos rigurosos. Biodisponibilidad pésima.",
         impacto: 1,
         coste: "Alto (~30-80€/mes)",
-        slug: "resveratrol",
+        id: "resveratrol",
       },
     ],
   },
@@ -196,22 +283,23 @@ export default function RankingPage() {
     <div className="max-w-3xl mx-auto px-4 py-12 space-y-12">
       <div className="space-y-3">
         <h1 className="text-3xl font-bold tracking-tight text-zinc-900">
-          Ranking: Mayor retorno para hombres 40+
+          Ranking de mayor retorno
         </h1>
         <p className="text-zinc-500 leading-relaxed">
           Ordenado por impacto real esperado, no por precio ni por lo que vende
-          mejor. Los hábitos van primero porque sin ellos los suplementos son ruido.
+          mejor. Los hábitos van primero porque sin ellos todo lo demás es ruido.
+          Los alimentos antes que los suplementos porque suelen ganar.
         </p>
       </div>
 
-      {categorias.map((cat) => (
-        <section key={cat.id} className="space-y-4">
+      {grupos.map((grupo) => (
+        <section key={grupo.id} className="space-y-4">
           <div>
-            <h2 className="text-lg font-bold text-zinc-900">{cat.titulo}</h2>
-            <p className="text-sm text-zinc-400">{cat.subtitulo}</p>
+            <h2 className="text-lg font-bold text-zinc-900">{grupo.titulo}</h2>
+            <p className="text-sm text-zinc-400">{grupo.subtitulo}</p>
           </div>
           <div className="space-y-3">
-            {cat.items.map((item) => (
+            {grupo.items.map((item) => (
               <RankingItem key={item.posicion} item={item} />
             ))}
           </div>
@@ -222,7 +310,7 @@ export default function RankingPage() {
         <p className="text-sm text-amber-800">
           Este ranking es orientativo. El impacto individual varía según tu
           situación de partida, déficits específicos y estilo de vida. Información
-          educativa, no consejo médico.
+          educativa, no consejo médico ni dietético.
         </p>
       </div>
     </div>
@@ -251,6 +339,20 @@ function ImpactoBar({ valor }: { valor: number }) {
   );
 }
 
+const tipoBadge: Record<string, string> = {
+  habito: "bg-orange-50 text-orange-600",
+  alimento: "bg-blue-50 text-blue-600",
+  bebida: "bg-cyan-50 text-cyan-600",
+  suplemento: "bg-violet-50 text-violet-600",
+};
+
+const tipoLabel: Record<string, string> = {
+  habito: "hábito",
+  alimento: "alimento",
+  bebida: "bebida",
+  suplemento: "suplemento",
+};
+
 function RankingItem({
   item,
 }: {
@@ -261,7 +363,7 @@ function RankingItem({
     descripcion: string;
     impacto: number;
     coste: string;
-    slug: string | null;
+    id: string | null;
   };
 }) {
   const content = (
@@ -274,12 +376,10 @@ function RankingItem({
           <span className="font-semibold text-zinc-900">{item.nombre}</span>
           <span
             className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-              item.tipo === "habito"
-                ? "bg-blue-50 text-blue-600"
-                : "bg-zinc-100 text-zinc-500"
+              tipoBadge[item.tipo] ?? "bg-zinc-100 text-zinc-500"
             }`}
           >
-            {item.tipo === "habito" ? "hábito" : "suplemento"}
+            {tipoLabel[item.tipo] ?? item.tipo}
           </span>
         </div>
         <p className="text-sm text-zinc-500 leading-relaxed">{item.descripcion}</p>
@@ -291,8 +391,8 @@ function RankingItem({
     </div>
   );
 
-  if (item.slug) {
-    return <Link href={`/suplementos/${item.slug}`}>{content}</Link>;
+  if (item.id) {
+    return <Link href={`/catalogo/${item.id}`}>{content}</Link>;
   }
   return content;
 }
